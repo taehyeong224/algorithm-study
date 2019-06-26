@@ -16,9 +16,8 @@ public class A10828 {
 
             if (command.equals("top")) {
                 try {
-                    int last = stack.pop();
+                    int last = stack.peek();
                     bw.write(last + "\n");
-                    stack.push(last);
                 } catch (Exception e) {
                     bw.write(-1 + "\n");
                 }
