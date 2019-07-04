@@ -1,6 +1,9 @@
 package kth;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -28,9 +31,34 @@ public class A1149 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int countOfHouse = Integer.parseInt(br.readLine());
+        int[][] houses = new int[countOfHouse][3];
+        int[][] price = new int[countOfHouse][3];
+        for (int i = 0; i < countOfHouse; i++) {
+            String[] inputPrice = br.readLine().split(" ");
+
+            houses[i][0] = Integer.parseInt(inputPrice[0]);
+            houses[i][1] = Integer.parseInt(inputPrice[1]);
+            houses[i][2] = Integer.parseInt(inputPrice[2]);
+        }
+        // 초기값을 첫 번 째 값들로 지정
+        price[0][0] = houses[0][0];
+        price[0][1] = houses[0][1];
+        price[0][2] = houses[0][2];
+        // price[i] = price[i -1] + 현재 최소값
+        for (int i = 1; i < countOfHouse; i++) {
+            price[i][0] = getMin(price[i-1][1], price[i-1][2]) + houses[i][0];
+            price[i][1] = getMin(price[i-1][0], price[i-1][2]) + houses[i][1];
+            price[i][2] = getMin(price[i-1][0], price[i-1][1]) + houses[i][2];
+        }
+        bw.write(getMin(getMin(price[countOfHouse - 1][0], price[countOfHouse - 1][1]), price[countOfHouse - 1][2]) + "\n");
 
         bw.flush();
         bw.close();
         br.close();
+    }
+
+    private static int getMin(int a, int b) {
+        return a < b ? a : b;
     }
 }
