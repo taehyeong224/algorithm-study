@@ -33,28 +33,32 @@ import java.io.*;
 
  */
 public class A11812_2 {
-    private static long max;
+    private static int max;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         String[] inputs = br.readLine().split(" ");
-        max = Long.parseLong(inputs[1]);
+        max = Integer.parseInt(inputs[1]);
         long nodeCount = Long.parseLong(inputs[0]);
         long count = Long.parseLong(inputs[2]);
 
-        // 1, 3, 9, 27, 81
-        // 1, 4, 13, 40, 121
         for (int i = 0; i < count; i++) {
             String[] targets = br.readLine().split(" ");
             long x = Long.parseLong(targets[0]);
             long y = Long.parseLong(targets[1]);
             int weight = 0;
             while (x != y) {
-                if (x > y) {
-                    x = (x - 2) / max + 1;
+                while (x > y) {
+                    x = getParent(x);
+                    weight++;
                 }
-                weight++;
+
+                while (x < y) {
+                    y = getParent(y);
+                    weight++;
+                }
+
             }
             bw.write(weight + "\n");
         }
@@ -63,8 +67,8 @@ public class A11812_2 {
         br.close();
     }
 
-    private static boolean isKdevied(Long number) {
-        return (number % max) == 0;
+    private static long getParent(Long a) {
+        return (a + max - 2) / max;
     }
 }
 
