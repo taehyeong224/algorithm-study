@@ -40,10 +40,10 @@ public class A2217 {
         for (int i = 0; i < N; i++) {
             list.add(Integer.parseInt(br.readLine()));
         }
-        list.sort((o1, o2) -> o2 - o1); // 내림차순
+        list.sort(Comparator.comparingInt(o -> o)); // 오름차순
 
         for (int i = 0; i < N; i++) {
-            max = max(max, list.get(i) * (N - i)); // 15 * 2,  10 * 1
+            max = max(max, list.get(i) * (N - i)); // 10 * 2,  15 * 1
         }
         bw.write(max + "\n");
         bw.flush();
