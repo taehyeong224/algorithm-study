@@ -40,8 +40,8 @@ public class A11812 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         String[] inputs = br.readLine().split(" ");
-        max = Long.parseLong(inputs[1]);
         long nodeCount = Long.parseLong(inputs[0]);
+        max = Long.parseLong(inputs[1]);
         long count = Long.parseLong(inputs[2]);
 
         TreeNode root = new TreeNode(1);
