@@ -53,8 +53,8 @@ public class A1931 {
         }
 
         bw.write(count + "\n");
-        bw.flush();
         bw.close();
+        bw.flush();
         br.close();
     }
 }
