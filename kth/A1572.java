@@ -43,9 +43,16 @@ public class A1572 {
         list.sort(Comparator.comparingInt(o -> o));
         int center = (K + 1) / 2;
         int sum = 0;
-        for (int i = center - 1; i <= N - center; i++) {
-            sum += list.get(i);
+
+        if (N == K) {
+            sum = list.get(center - 1);
+        } else {
+            int last = K % 2 == 0 ? N - center - 1 : N - center;
+            for (int i = center - 1; i <= last; i++) {
+                sum += list.get(i);
+            }
         }
+
         bw.write(sum + "\n");
         bw.flush();
         bw.close();
