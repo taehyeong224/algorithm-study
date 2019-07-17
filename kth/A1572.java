@@ -40,7 +40,6 @@ public class A1572 {
         for (int i = 0; i < N; i++) {
             list.add(Integer.parseInt(br.readLine()));
         }
-        list.sort(Comparator.comparingInt(o -> o));
         int center = (K + 1) / 2;
         int sum = 0;
 
