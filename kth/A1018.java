@@ -15,7 +15,7 @@ public class A1018 {
         String[] NM = br.readLine().split(" ");
         int N = Integer.parseInt(NM[0]);
         int M = Integer.parseInt(NM[1]);
-        map = new char[M][N];
+        map = new char[N][M];
         for (int i = 0; i < N; i++) {
             map[i] = br.readLine().toCharArray();
         }
@@ -33,11 +33,11 @@ public class A1018 {
         br.close();
     }
 
-    static void blackCount(int startY, int startX) {
+    static void blackCount(int startX, int startY) {
         int cnt = 0;
-        for (int i = startY; i < startY + 8; i++) {
-            for (int j = startX; j < startX + 8; j++) {
-                if (map[i][j] != black[i - startY][j - startX]) {
+        for (int i = startX; i < startX + 8; i++) {
+            for (int j = startY; j < startY + 8; j++) {
+                if (map[i][j] != black[i - startX][j - startY]) {
                     cnt++;
                 }
             }
@@ -47,9 +47,9 @@ public class A1018 {
 
     static void whiteCount(int startX, int startY) {
         int cnt = 0;
-        for (int i = startY; i < startY + 8; i++) {
-            for (int j = startX; j < startX + 8; j++) {
-                if (map[i][j] != white[i - startY][j - startX]) {
+        for (int i = startX; i < startX + 8; i++) {
+            for (int j = startY; j < startY + 8; j++) {
+                if (map[i][j] != white[i - startX][j - startY]) {
                     cnt++;
                 }
             }
